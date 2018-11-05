@@ -3,10 +3,10 @@ import logging.config
 import os
 from flask import Flask, Blueprint
 from rest_api_demo import settings
-from rest_api_demo.api.blog.endpoints.posts import ns as blog_posts_namespace
-from rest_api_demo.api.blog.endpoints.categories import ns as blog_categories_namespace
+from rest_api_demo.api.moisture.endpoints.moisture_readings import ns as moisture_readings_namespace
 from rest_api_demo.api.restplus import api
 from rest_api_demo.database import db
+from rest_api_demo.database import reset_database
 
 app = Flask(__name__)
 logging_conf_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../logging.conf'))
@@ -29,8 +29,7 @@ def initialize_app(flask_app):
 
     blueprint = Blueprint('api', __name__, url_prefix='/api')
     api.init_app(blueprint)
-    api.add_namespace(blog_posts_namespace)
-    api.add_namespace(blog_categories_namespace)
+    api.add_namespace(moisture_readings_namespace)
     flask_app.register_blueprint(blueprint)
 
     db.init_app(flask_app)
@@ -38,6 +37,9 @@ def initialize_app(flask_app):
 
 def main():
     initialize_app(app)
+    #with app.app_context():
+    #    reset_database()
+
     log.info('>>>>> Starting development server at http://{}/api/ <<<<<'.format(app.config['SERVER_NAME']))
     app.run(debug=settings.FLASK_DEBUG)
 
