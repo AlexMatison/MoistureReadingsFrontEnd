@@ -2,11 +2,11 @@ import logging
 
 from flask import request
 from flask_restplus import Resource
-from rest_api_demo.api.moisture.business import create_moisture_reading, update_moisture_reading, delete_post
-from rest_api_demo.api.moisture.serializers import moisture_reading, page_of_moisture_readings
-from rest_api_demo.api.moisture.parsers import pagination_arguments
-from rest_api_demo.api.restplus import api
-from rest_api_demo.database.models import MoistureReading
+from MoistureReadingsFrontEnd.api.moisture.business import create_moisture_reading, update_moisture_reading, delete_post
+from MoistureReadingsFrontEnd.api.moisture.serializers import moisture_reading, page_of_moisture_readings
+from MoistureReadingsFrontEnd.api.moisture.parsers import pagination_arguments
+from MoistureReadingsFrontEnd.api.restplus import api
+from MoistureReadingsFrontEnd.database.models import MoistureReading
 
 log = logging.getLogger(__name__)
 

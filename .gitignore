@@ -67,3 +67,7 @@ ENV/
 
 # Editors
 .idea/
+
+# Google stuff
+rest_api_demo/token.json
+rest_api_demo/credentials.json

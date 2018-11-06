@@ -1,5 +1,5 @@
 from flask_restplus import fields
-from rest_api_demo.api.restplus import api
+from MoistureReadingsFrontEnd.api.restplus import api
 
 moisture_reading = api.model('Blog post', {
     'id': fields.Integer(readOnly=True, description='The unique identifier of a moisture reading'),

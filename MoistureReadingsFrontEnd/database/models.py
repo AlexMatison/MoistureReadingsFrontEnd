@@ -4,7 +4,7 @@
 
 from datetime import datetime
 
-from rest_api_demo.database import db
+from MoistureReadingsFrontEnd.database import db
 
 
 class MoistureReading(db.Model):
