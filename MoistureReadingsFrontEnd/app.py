@@ -7,6 +7,7 @@ from MoistureReadingsFrontEnd.api.moisture.endpoints.moisture_readings import ns
 from MoistureReadingsFrontEnd.api.restplus import api
 from MoistureReadingsFrontEnd.database import db
 from MoistureReadingsFrontEnd.database import reset_database
+from MoistureReadingsFrontEnd.web import web
 
 app = Flask(__name__)
 logging_conf_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../logging.conf'))
@@ -28,9 +29,12 @@ def initialize_app(flask_app):
     configure_app(flask_app)
 
     blueprint = Blueprint('api', __name__, url_prefix='/api')
+
     api.init_app(blueprint)
     api.add_namespace(moisture_readings_namespace)
     flask_app.register_blueprint(blueprint)
+
+    flask_app.register_blueprint(web.web_blueprint)
 
     db.init_app(flask_app)
 

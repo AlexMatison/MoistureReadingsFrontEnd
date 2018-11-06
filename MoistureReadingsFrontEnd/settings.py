@@ -11,3 +11,7 @@ RESTPLUS_ERROR_404_HELP = False
 # SQLAlchemy settings
 SQLALCHEMY_DATABASE_URI = 'mysql://moisture_db_admin:moisture-pwd@172.17.0.2/test'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# Google Sheets settings
+GOOGLE_SHEETS_SPREADSHEET_ID = '1v-8xe3IMNGuFDYQGRCtgjyvARpxtN70RC0o8yEPBFOw'
+#GOOGLE_SHEETS_SPREADSHEET_ID = 'garbage'

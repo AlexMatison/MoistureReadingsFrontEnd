@@ -12,7 +12,11 @@ class MoistureReading(db.Model):
     location_id = db.Column(db.Integer)
     moisture_value = db.Column(db.Float)
     timestamp = db.Column(db.DateTime)
+    inGoogleSheets = db.Column(db.Boolean)
 
+    # Used to send to google sheets.
+    def toList(self):
+        return [self.id, self.location_id, self.moisture_value, self.timestamp.strftime("%Y-%m-%d %H:%M:%S")]
 
     def __init__(self, location_id, moisture_value, timestamp=None):
         self.location_id = location_id
@@ -20,8 +24,11 @@ class MoistureReading(db.Model):
         if timestamp is None:
             timestamp = datetime.utcnow()
         self.timestamp = timestamp
+        self.inGoogleSheets = False
 
 
     def __repr__(self):
-        return '<MoistureReading %r>' % self.id
+        return (self.location_id, self.moisture_value, self.timestamp, self.inGoogleSheets)
+
+        #return '<MoistureReading %r>' % self.id
 

@@ -2,7 +2,7 @@ import logging
 
 from flask import request
 from flask_restplus import Resource
-from MoistureReadingsFrontEnd.api.moisture.business import create_moisture_reading, update_moisture_reading, delete_post
+from MoistureReadingsFrontEnd.api.moisture.business import create_moisture_reading, update_moisture_reading, delete_post, push_outstanding_readings_to_google
 from MoistureReadingsFrontEnd.api.moisture.serializers import moisture_reading, page_of_moisture_readings
 from MoistureReadingsFrontEnd.api.moisture.parsers import pagination_arguments
 from MoistureReadingsFrontEnd.api.restplus import api
@@ -91,8 +91,20 @@ class MoistureReadingArchiveCollection(Resource):
         end_day = day + 1 if day else 31
         start_date = '{0:04d}-{1:02d}-{2:02d}'.format(year, start_month, start_day)
         end_date = '{0:04d}-{1:02d}-{2:02d}'.format(year, end_month, end_day)
-        moisture_readings_query = MoistureReading.query.filter(MoistureReading.pub_date >= start_date).filter(MoistureReading.pub_date <= end_date)
+        moisture_readings_query = MoistureReading.query.filter(MoistureReading.timestamp >= start_date).filter(MoistureReading.timestamp <= end_date)
 
         posts_page = moisture_readings_query.paginate(page, per_page, error_out=False)
 
         return posts_page
+
+
+@ns.route('/pushToGoogle/')
+class PushToGoogle(Resource):
+    def get(self):
+        """
+        Trigger the app to try and push any outstanding readings to google sheets.
+        """
+        print('hi how are you.')
+        push_outstanding_readings_to_google()
+        return None, 201
+

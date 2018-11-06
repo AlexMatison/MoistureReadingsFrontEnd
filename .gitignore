@@ -69,5 +69,5 @@ ENV/
 .idea/
 
 # Google stuff
-rest_api_demo/token.json
-rest_api_demo/credentials.json
+MoistureReadingsFrontEnd/google/credentials.json
+MoistureReadingsFrontEnd/google/token.json
