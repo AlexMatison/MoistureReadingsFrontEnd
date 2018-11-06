@@ -1,10 +1,10 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='rest_api_demo',
+    name='MoistureReadingsFrontEnd',
     version='1.0.0',
     description='Boilerplate code for a RESTful API based on Flask-RESTPlus',
-    url='https://github.com/postrational/rest_api_demo',
+    url='https://github.com/postrational/MoistureReadingsFrontEnd',
     author='Michal Karzynski',
 
     classifiers=[

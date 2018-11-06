@@ -2,11 +2,11 @@ import logging.config
 
 import os
 from flask import Flask, Blueprint
-from rest_api_demo import settings
-from rest_api_demo.api.moisture.endpoints.moisture_readings import ns as moisture_readings_namespace
-from rest_api_demo.api.restplus import api
-from rest_api_demo.database import db
-from rest_api_demo.database import reset_database
+from MoistureReadingsFrontEnd import settings
+from MoistureReadingsFrontEnd.api.moisture.endpoints.moisture_readings import ns as moisture_readings_namespace
+from MoistureReadingsFrontEnd.api.restplus import api
+from MoistureReadingsFrontEnd.database import db
+from MoistureReadingsFrontEnd.database import reset_database
 
 app = Flask(__name__)
 logging_conf_path = os.path.normpath(os.path.join(os.path.dirname(__file__), '../logging.conf'))

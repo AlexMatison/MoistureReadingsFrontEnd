@@ -1,5 +1,5 @@
-from rest_api_demo.database import db
-from rest_api_demo.database.models import MoistureReading
+from MoistureReadingsFrontEnd.database import db
+from MoistureReadingsFrontEnd.database.models import MoistureReading
 
 
 def create_moisture_reading(data):
