@@ -71,3 +71,4 @@ ENV/
 # Google stuff
 MoistureReadingsFrontEnd/google/credentials.json
 MoistureReadingsFrontEnd/google/token.json
+MoistureReadingsFrontEnd/settings.py

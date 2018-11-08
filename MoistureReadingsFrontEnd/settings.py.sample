@@ -11,3 +11,9 @@ RESTPLUS_ERROR_404_HELP = False
 # SQLAlchemy settings
 SQLALCHEMY_DATABASE_URI = 'mysql://...'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
+
+# Google Sheets settings
+GOOGLE_SHEETS_SPREADSHEET_ID = ''
+
+# Flask Secret Key. Used for forms
+FLASK_SECRET_KEY = ''
