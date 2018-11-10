@@ -15,11 +15,22 @@ def moisture_to_google(moisture_data, spreadsheet_id):
     """Shows basic usage of the Sheets API.
     Prints values from a sample spreadsheet.
     """
-    store = file.Storage('token.json')
-    creds = store.get()
+    try:
+        store = file.Storage('google/token.json')
+    except:
+        print("Problem with token.json")
+        return False
+
+    try:
+        creds = store.get()
+    except:
+        print("problem with creds")
+        return False
+
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('credentials.json', SCOPES)
+        flow = client.flow_from_clientsecrets('google/credentials.json', SCOPES)
         creds = tools.run_flow(flow, store)
+
     service = build('sheets', 'v4', http=creds.authorize(Http()))
 
     # Call the Sheets API
