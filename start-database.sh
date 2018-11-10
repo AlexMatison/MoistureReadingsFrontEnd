@@ -6,4 +6,4 @@ docker run --name moisture-mysql \
     -e MYSQL_USER=moisture_db_admin \
     -e MYSQL_PASSWORD=changeme \
     -p 3306:3306 \
-    -d mysql:5.7
+    -d hypriot/rpi-mysql

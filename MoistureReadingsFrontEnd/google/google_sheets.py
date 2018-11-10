@@ -16,7 +16,7 @@ def moisture_to_google(moisture_data, spreadsheet_id):
     Prints values from a sample spreadsheet.
     """
     try:
-        store = file.Storage('google/token.json')
+        store = file.Storage('MoistureReadingsFrontEnd/google/token.json')
     except:
         print("Problem with token.json")
         return False
@@ -28,7 +28,7 @@ def moisture_to_google(moisture_data, spreadsheet_id):
         return False
 
     if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('google/credentials.json', SCOPES)
+        flow = client.flow_from_clientsecrets('MoistureReadingsFrontEnd/google/credentials.json', SCOPES)
         creds = tools.run_flow(flow, store)
 
     service = build('sheets', 'v4', http=creds.authorize(Http()))
