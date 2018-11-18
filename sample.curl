@@ -1,0 +1,4 @@
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: text/html' -d '{
+  "location_id": 12,
+  "moisture_value": 13
+}' 'http://192.168.1.8/api/moisture/readings/'
