@@ -9,11 +9,13 @@ RESTPLUS_MASK_SWAGGER = False
 RESTPLUS_ERROR_404_HELP = False
 
 # SQLAlchemy settings
-SQLALCHEMY_DATABASE_URI = 'mysql://...'
+# If you modify the MYSQL parameters in start-database.sh, then you'll need to update the line below
+SQLALCHEMY_DATABASE_URI = 'mysql://root:changeme@moisture-mysql/moisture-db'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 # Google Sheets settings
+# Refer to the URL of the sheet, everything between /d/ and /edit...
 GOOGLE_SHEETS_SPREADSHEET_ID = ''
 
 # Flask Secret Key. Used for forms
-FLASK_SECRET_KEY = ''
+FLASK_SECRET_KEY = 'ABCD'
