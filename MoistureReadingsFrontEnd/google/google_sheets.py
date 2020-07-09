@@ -2,7 +2,12 @@ from __future__ import print_function
 from googleapiclient.discovery import build
 from httplib2 import Http
 from oauth2client import file, client, tools
+from google_auth_oauthlib.flow import InstalledAppFlow
+from google.auth.transport.requests import Request
+
 import logging
+import os
+import pickle
 
 # https://github.com/googleapis/google-api-python-client/issues/299
 logging.getLogger('googleapicliet.discovery_cache').setLevel(logging.ERROR)
@@ -10,28 +15,27 @@ logging.getLogger('googleapicliet.discovery_cache').setLevel(logging.ERROR)
 # If modifying these scopes, delete the file token.json.
 SCOPES = 'https://www.googleapis.com/auth/spreadsheets'
 
+# flow = client.flow_from_clientsecrets('MoistureReadingsFrontEnd/google/credentials.json', SCOPES)
 
 def moisture_to_google(moisture_data, spreadsheet_id):
-    """Shows basic usage of the Sheets API.
-    Prints values from a sample spreadsheet.
-    """
-    try:
-        store = file.Storage('MoistureReadingsFrontEnd/google/token.json')
-    except:
-        print("Problem with token.json")
-        return False
-
-    try:
-        creds = store.get()
-    except:
-        print("problem with creds")
-        return False
-
-    if not creds or creds.invalid:
-        flow = client.flow_from_clientsecrets('MoistureReadingsFrontEnd/google/credentials.json', SCOPES)
-        creds = tools.run_flow(flow, store)
-
-    service = build('sheets', 'v4', http=creds.authorize(Http()))
+    creds = None
+    # The file token.pickle stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('token.pickle'):
+        with open('MoistureReadingsFrontEnd/google/token.pickle', 'rb') as token:
+            creds = pickle.load(token)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'MoistureReadingsFrontEnd/google/credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.pickle', 'wb') as token:
+            pickle.dump(creds, token)
 
     # Call the Sheets API
     RANGE_NAME = 'Sheet1!A:D'
