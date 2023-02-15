@@ -10,7 +10,7 @@ PyYAML>=3.13
 SQLAlchemy>=1.2.13
 WTForms>=2.2.1
 
-Werkzeug==0.16.0
+Werkzeug==2.2.3
 
 alembic>=1.0.2
 aniso8601>=4.0.1
